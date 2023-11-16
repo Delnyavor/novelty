@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "380481026845",
+    "project_id": "novelty-c8870",
+    "storage_bucket": "novelty-c8870.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380481026845:android:7136f7ff3c033529e7fff4",
+        "android_client_info": {
+          "package_name": "com.example.novelty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZSqiYECRsyoGej3qxT4XXQ1XbsKotVPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380481026845:android:6711c6d6f37579d8e7fff4",
+        "android_client_info": {
+          "package_name": "com.example.novelty_book_club"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZSqiYECRsyoGej3qxT4XXQ1XbsKotVPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
