@@ -10,13 +10,18 @@ import 'common/transitions/route_transitions.dart';
 import 'di/injection_container.dart';
 import 'features/auth/data/repositories/authentication_repository.dart';
 import 'features/auth/presentation/bloc/app_bloc.dart';
+import 'firebase_options.dart';
+
+// ...
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await initDependencies();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  await Firebase.initializeApp();
+  await initDependencies();
 
   final authenticationRepository = sl<AuthenticationRepository>();
   await authenticationRepository.user.first;
