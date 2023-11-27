@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:novelty/common/routes/route_generator.dart';
+import 'package:novelty/common/routes/routes.dart';
 import 'package:novelty/common/theming/app_themes.dart';
+import 'package:novelty/features/app/presentation/pages/app_page.dart';
 import 'package:novelty/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:novelty/features/auth/presentation/bloc/registration_bloc/bloc/registration_bloc.dart';
 import 'package:novelty/features/auth/presentation/pages/onboarding_page.dart';
@@ -56,6 +59,15 @@ class App extends StatelessWidget {
         title: 'Novelty',
         theme: lightTheme,
         themeMode: ThemeMode.light,
+        initialRoute: AppRoutes.root,
+        onGenerateRoute: onGeneratePrimaryRoute,
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (_) => const AppPage(
+              appPageRoute: AppRoutes.libraryRoutePrefix,
+            ),
+          );
+        },
         home: const Landing(),
       ),
     );

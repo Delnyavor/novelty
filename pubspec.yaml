@@ -45,6 +45,11 @@ dependencies:
   firebase_auth: ^4.14.0
   formz: ^0.6.1
   google_fonts: ^6.1.0
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  palette_generator: ^0.3.3+3
+  flutter_isolate: ^2.0.4
 
 dev_dependencies:
   flutter_test:

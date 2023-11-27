@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:novelty/common/routes/routes.dart';
 import 'package:novelty/common/theming/app_colors.dart';
 import 'package:novelty/common/transitions/route_transitions.dart';
 import 'package:novelty/features/auth/presentation/pages/login_page.dart';
@@ -73,11 +74,15 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   Widget skipWidget() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
-          child: Text(
+          onTap: () {
+            Navigator.pushReplacementNamed(
+                context, "${AppRoutes.app}${AppRoutes.homeRoutePrefix}");
+          },
+          child: const Text(
             'Skip',
             style: TextStyle(
               fontWeight: FontWeight.bold,

@@ -5,10 +5,9 @@ import 'package:novelty/common/theming/app_colors.dart';
 final ThemeData lightTheme = _buildLightTheme();
 
 ThemeData _buildLightTheme() {
-  final ThemeData base = ThemeData.light();
+  final ThemeData base = ThemeData.light(useMaterial3: true);
   return base.copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-    useMaterial3: true,
 
     // TODO: Add the text themes
     textTheme: GoogleFonts.dmSansTextTheme(
@@ -31,19 +30,22 @@ ThemeData _buildLightTheme() {
         fontSize: 12,
       ),
       alignLabelWithHint: true,
+      fillColor: AppColors.light,
+      filled: true,
       enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-              width: 0.5, color: Colors.grey.shade100.withOpacity(0.2))),
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
       focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-              width: 1, color: Colors.grey.shade100.withOpacity(0.7))),
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
       focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(width: 1, color: Colors.red.withOpacity(0.5))),
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
       errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(0),
           borderSide:
               BorderSide(width: 0.5, color: Colors.red.withOpacity(0.2))),
     ),
