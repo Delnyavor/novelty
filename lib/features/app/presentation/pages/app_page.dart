@@ -23,6 +23,7 @@ class _AppPage extends State<AppPage> {
     AppRoutes.libraryRoutePrefix,
     AppRoutes.searchRoutePrefix,
     AppRoutes.communityRoutePrefix,
+    AppRoutes.viewBookDetails,
   ];
 
   bool shouldPop = false;
@@ -74,7 +75,7 @@ class _AppPage extends State<AppPage> {
     }
   }
 
-  void _exitSetup() {
+  void exit() {
     Navigator.of(context).pop();
   }
 
@@ -86,22 +87,24 @@ class _AppPage extends State<AppPage> {
         if (didPop) return;
 
         if (await _isExitDesired() && context.mounted) {
-          _exitSetup();
+          exit();
         }
       },
       child: Scaffold(
         body: body(),
-        bottomNavigationBar: ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-            child: navbar()),
+        bottomNavigationBar: navbar(),
       ),
     );
   }
 
   Widget navbar() {
     return NavigationBar(
-      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       selectedIndex: currentPageIndex,
+      indicatorShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      indicatorColor: Theme.of(context).colorScheme.inversePrimary,
       onDestinationSelected: (int index) {
         setState(() {
           currentPageIndex = index;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:novelty/common/theming/constants.dart';
 
 class SectionTitle extends StatelessWidget {
   final String text;
@@ -8,10 +9,8 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context)
-          .textTheme
-          .titleMedium
-          ?.copyWith(fontWeight: FontWeight.bold),
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.bold, fontFamily: ramillasFontFamily),
     );
   }
 }

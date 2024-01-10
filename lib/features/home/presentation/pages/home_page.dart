@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:novelty/common/theming/constants.dart';
-import 'package:novelty/features/home/presentation/widgets/lists/currently_reading_widget_list.dart';
 import 'package:novelty/features/home/presentation/widgets/lists/popular_books_widget_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,13 +17,17 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          Theme.of(context).colorScheme.surfaceTint.withOpacity(0.08),
       appBar: appBar(),
       body: ListView(
           padding: const EdgeInsets.only(bottom: 20, top: 10),
           children: [
-            searchbar(),
-            const SizedBox(height: 16),
-            const CurrentlyReadingList(bookList: []),
+            // searchbar(),
+            banner(),
+            const SizedBox(height: novPrimaryBodyMargin),
+
+            // const CurrentlyReadingList(bookList: []),
             const PopularBooksList(bookList: [])
           ]),
     );
@@ -31,22 +36,36 @@ class _HomePage extends State<HomePage> {
   Widget searchbar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: novPrimaryBodyMargin),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: TextField(
-          maxLines: 1,
-          decoration: InputDecoration(
-            hintText: 'Search',
-            hintStyle: Theme.of(context)
-                .textTheme
-                .labelSmall!
-                .copyWith(fontWeight: FontWeight.normal, color: Colors.black45),
-            contentPadding: const EdgeInsets.symmetric(
-                vertical: 0, horizontal: novPrimaryBodyMargin),
-            prefixIcon: const Icon(Icons.search),
-            filled: true,
-            // fillColor: Theme.of(context).colorScheme.,
+      child: TextField(
+        maxLines: 1,
+        textAlignVertical: TextAlignVertical.center,
+        // cursorHeight: 12,
+        cursorWidth: 1.5,
+        style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black87),
+        decoration: InputDecoration(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+                width: 0.5),
           ),
+          hintText: 'Search book name, author ...',
+          hintStyle: Theme.of(context)
+              .textTheme
+              .labelSmall!
+              .copyWith(fontWeight: FontWeight.normal, color: Colors.black45),
+          contentPadding: const EdgeInsets.symmetric(
+              vertical: 15, horizontal: novPrimaryBodyMargin),
+          prefixIcon: const Align(
+            alignment: Alignment.centerLeft,
+            child: Icon(
+              CupertinoIcons.search,
+              size: 18,
+            ),
+          ),
+          prefixIconConstraints: const BoxConstraints(maxWidth: 30),
+          filled: true,
+          fillColor: Colors.transparent,
         ),
       ),
     );
@@ -55,15 +74,19 @@ class _HomePage extends State<HomePage> {
   AppBar appBar() {
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor:
+          Theme.of(context).colorScheme.surfaceTint.withOpacity(0.01),
+      surfaceTintColor: Colors.transparent,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       leading: IconButton(
         onPressed: () {},
         icon: const Icon(
-          Icons.sort,
-          size: 24,
+          CupertinoIcons.search,
+          size: 22,
         ),
       ),
       actions: <Widget>[
-        // notification(),
+        notification(),
         profile(),
       ],
     );
@@ -91,7 +114,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
         child: CircleAvatar(
-          radius: 18,
+          radius: 12,
           backgroundImage: AssetImage('assets/images/portrait.jpg'),
         ),
       ),
@@ -105,6 +128,58 @@ class _HomePage extends State<HomePage> {
         onPressed: () {},
         icon: const Icon(Icons.notifications_outlined, size: 24),
         //  Icons.notifications_outlined),
+      ),
+    );
+  }
+
+  Widget banner() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: novPrimaryBodyMargin,
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Happy reading, Joshua',
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontFamily: "TT Ramillas",
+                  height: 1.45,
+                ),
+          ),
+          const SizedBox(height: novTitleMargin),
+          Text(
+            'Don\'t let the story end just yet. Continue to immerse yourself in the world of literature',
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  height: 1.8,
+                ),
+          ),
+          const SizedBox(height: novPrimaryBodyMargin),
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                  iconColor: Colors.white,
+                ),
+                child: const Row(
+                  children: [
+                    Text(
+                      'Continue Reading',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    Icon(
+                      CupertinoIcons.arrow_up_right,
+                      size: 20,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

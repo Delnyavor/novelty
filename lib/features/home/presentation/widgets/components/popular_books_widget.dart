@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:novelty/features/home/presentation/widgets/components/image.dart';
 
 class PopularBooksWidget extends StatefulWidget {
   // Receive a book instead
   final String image;
-  const PopularBooksWidget({super.key, required this.image});
+  final String title;
+  const PopularBooksWidget(
+      {super.key, required this.image, required this.title});
 
   @override
   State<PopularBooksWidget> createState() => _PopularBooksWidgetState();
@@ -17,60 +18,64 @@ class _PopularBooksWidgetState extends State<PopularBooksWidget> {
       onTap: () {
         // viewProduct(context, index);
       },
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 12),
-        child: SizedBox.fromSize(
-          size: const Size.fromHeight(70),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              imageWidget(),
-              descriptors(),
-            ],
-          ),
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          imageWidget(),
+          const SizedBox(height: 20),
+          descriptors(),
+        ],
       ),
     );
   }
 
   Widget imageWidget() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(6),
-      child: BgColorImage(
-        networkImage: widget.image,
-        fit: BoxFit.cover,
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            spreadRadius: -12,
+            blurRadius: 6,
+            offset: Offset(-15, 15),
+            color: Colors.black12,
+          ),
+          BoxShadow(
+            spreadRadius: -10,
+            blurRadius: 8,
+            offset: Offset(-20, 22),
+            color: Colors.black26,
+          ),
+        ],
+      ),
+      child: AspectRatio(
+        aspectRatio: 1 / 1.5,
+        child: Image.network(
+          widget.image,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
 
-  Widget descriptors() => const Padding(
-        padding: EdgeInsets.fromLTRB(8, 0, 0, 8),
+  Widget descriptors() => Padding(
+        padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Book Title',
-              maxLines: 1,
+              widget.title,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                // fontWeight: FontWeight.bold,
+              style: const TextStyle(
                 color: Colors.black87,
+                fontWeight: FontWeight.bold,
                 fontSize: 12,
                 letterSpacing: 0.1,
+                height: 1.5,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            Text(
-              'Book Author or Publisher',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Colors.black54,
-                fontSize: 12,
-                letterSpacing: 0.1,
-              ),
-            )
           ],
         ),
       );
