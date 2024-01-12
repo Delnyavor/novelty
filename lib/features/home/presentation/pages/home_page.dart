@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:novelty/common/theming/constants.dart';
+import 'package:novelty/features/home/presentation/widgets/components/greeting_banner.dart';
 import 'package:novelty/features/home/presentation/widgets/lists/popular_books_widget_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,18 +18,14 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Theme.of(context).colorScheme.surfaceTint.withOpacity(0.08),
+      backgroundColor: Colors.transparent,
       appBar: appBar(),
       body: ListView(
           padding: const EdgeInsets.only(bottom: 20, top: 10),
-          children: [
-            // searchbar(),
-            banner(),
-            const SizedBox(height: novPrimaryBodyMargin),
-
-            // const CurrentlyReadingList(bookList: []),
-            const PopularBooksList(bookList: [])
+          children: const [
+            GreetingsBanner(),
+            SizedBox(height: novPrimaryBodyMargin),
+            PopularBooksList(bookList: [])
           ]),
     );
   }
@@ -128,58 +125,6 @@ class _HomePage extends State<HomePage> {
         onPressed: () {},
         icon: const Icon(Icons.notifications_outlined, size: 24),
         //  Icons.notifications_outlined),
-      ),
-    );
-  }
-
-  Widget banner() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: novPrimaryBodyMargin,
-      ),
-      child: Column(
-        children: [
-          Text(
-            'Happy reading, Joshua',
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                  fontFamily: "TT Ramillas",
-                  height: 1.45,
-                ),
-          ),
-          const SizedBox(height: novTitleMargin),
-          Text(
-            'Don\'t let the story end just yet. Continue to immerse yourself in the world of literature',
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  height: 1.8,
-                ),
-          ),
-          const SizedBox(height: novPrimaryBodyMargin),
-          Row(
-            children: [
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                  iconColor: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text(
-                      'Continue Reading',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                    Icon(
-                      CupertinoIcons.arrow_up_right,
-                      size: 20,
-                    )
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
       ),
     );
   }

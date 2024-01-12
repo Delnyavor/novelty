@@ -38,6 +38,25 @@ Route<dynamic>? onGenerateAppRoute(RouteSettings settings) {
   return MaterialPageRoute(builder: (_) => const Scaffold());
 }
 
+Route<dynamic>? onGenerateHomeRoute(RouteSettings settings) {
+  if (settings.name == AppRoutes.viewBookDetails) {
+    return fadeInRoute(const HomePage());
+  }
+  if (settings.name == AppRoutes.viewAuthor) {
+    return fadeInRoute(const SampleB());
+  }
+  if (settings.name == AppRoutes.viewCategory) {
+    return fadeInRoute(const SampleC());
+  }
+  if (settings.name == AppRoutes.viewUserProfile) {
+    return fadeInRoute(const SampleD());
+  }
+
+  if (settings.name == AppRoutes.viewNotifications) {
+    return fadeInRoute(const SampleD());
+  }
+  return MaterialPageRoute(builder: (_) => const Scaffold());
+}
 // Route<dynamic>? onGenerateLibraryRoute(RouteSettings settings) {
 //   if (settings.name!.startsWith(AppRoutes.libraryRoutePrefix)) {
 //     final subroute =

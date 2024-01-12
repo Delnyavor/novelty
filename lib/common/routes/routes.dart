@@ -18,7 +18,12 @@ class AppRoutes {
 
   static const communityRoutePrefix = '/community';
 
-  //*******************Common Routes*****************//
+  //*******************Common Routes********************//
+
   // View book details
   static const viewBookDetails = 'viewBookDetails';
+  static const viewAuthor = 'viewAuthor';
+  static const viewCategory = 'viewCategory';
+  static const viewUserProfile = 'viewUserProfile';
+  static const viewNotifications = 'viewNotifications';
 }

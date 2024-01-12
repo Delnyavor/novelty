@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:novelty/common/routes/navigator_keys.dart';
 import 'package:novelty/common/routes/route_generator.dart';
 import 'package:novelty/common/routes/routes.dart';
 
@@ -15,8 +16,6 @@ class AppPage extends StatefulWidget {
 
 class _AppPage extends State<AppPage> {
   int currentPageIndex = 0;
-
-  final _navigatorKey = GlobalKey<NavigatorState>();
 
   final List<String> routesMappings = [
     AppRoutes.homeRoutePrefix,
@@ -48,7 +47,11 @@ class _AppPage extends State<AppPage> {
   }
 
   void returnToIndexPage() {
-    _navigatorKey.currentState!.pushNamed(routesMappings.first);
+    primaryNavigatorKey.currentState!
+        .pushNamedAndRemoveUntil(routesMappings.first, (route) {
+      return route.settings.name == AppRoutes.app;
+    });
+
     setState(() {
       currentPageIndex = 0;
     });
@@ -90,9 +93,15 @@ class _AppPage extends State<AppPage> {
           exit();
         }
       },
-      child: Scaffold(
-        body: body(),
-        bottomNavigationBar: navbar(),
+      child: DecoratedBox(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: Scaffold(
+          backgroundColor:
+              Theme.of(context).colorScheme.surfaceTint.withOpacity(0.095),
+          body: body(),
+          bottomNavigationBar: navbar(),
+          extendBody: true,
+        ),
       ),
     );
   }
@@ -106,28 +115,32 @@ class _AppPage extends State<AppPage> {
       ),
       indicatorColor: Theme.of(context).colorScheme.inversePrimary,
       onDestinationSelected: (int index) {
-        setState(() {
-          currentPageIndex = index;
-        });
-        _navigatorKey.currentState!.pushNamed(routesMappings[index]);
+        if (currentPageIndex != index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+          primaryNavigatorKey.currentState!.pushNamed(routesMappings[index]);
+        }
       },
       destinations: const <Widget>[
         NavigationDestination(
-          selectedIcon: Icon(Icons.roofing_rounded),
-          icon: Icon(Icons.home_filled),
+          selectedIcon: Icon(Icons.roofing_rounded, color: Colors.white),
+          icon: Icon(Icons.roofing_rounded),
           label: 'Home',
         ),
         NavigationDestination(
           icon: Icon(Icons.menu_book_rounded),
+          selectedIcon: Icon(Icons.menu_book_rounded, color: Colors.white),
           label: 'Library',
         ),
         NavigationDestination(
-          icon: Icon(Icons.search),
+          icon: Icon(CupertinoIcons.search),
+          selectedIcon: Icon(CupertinoIcons.search, color: Colors.white),
           label: 'Search',
         ),
         NavigationDestination(
-          selectedIcon: Icon(CupertinoIcons.chat_bubble_2_fill),
-          icon: Icon(CupertinoIcons.chat_bubble_2),
+          icon: Icon(CupertinoIcons.chat_bubble_2_fill),
+          selectedIcon: Icon(CupertinoIcons.chat_bubble_2, color: Colors.white),
           label: 'Community',
         ),
       ],
@@ -136,7 +149,7 @@ class _AppPage extends State<AppPage> {
 
   Widget body() {
     return Navigator(
-      key: _navigatorKey,
+      key: primaryNavigatorKey,
       initialRoute: widget.appPageRoute,
       onGenerateRoute: onGenerateAppRoute,
     );

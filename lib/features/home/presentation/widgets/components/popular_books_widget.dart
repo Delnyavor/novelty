@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:novelty/common/routes/navigator_keys.dart';
+import 'package:novelty/common/routes/routes.dart';
 
 class PopularBooksWidget extends StatefulWidget {
   // Receive a book instead
@@ -16,7 +18,8 @@ class _PopularBooksWidgetState extends State<PopularBooksWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // viewProduct(context, index);
+        Navigator.of(context).pushNamed(AppRoutes.viewBookDetails,
+            arguments: {"name": widget.title});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +72,7 @@ class _PopularBooksWidgetState extends State<PopularBooksWidget> {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.black87,
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
                 fontSize: 12,
                 letterSpacing: 0.1,
                 height: 1.5,
