@@ -91,8 +91,10 @@ flutter:
     - family: TT Ramillas
       fonts:
         - asset: assets/fonts/TT-Ramillas/TT_Ramillas_Trial_Regular.ttf
-        - asset: assets/fonts/TT-Ramillas/TT Ramillas Trial Medium Italic.ttf
-          weight: 600
+        - asset: assets/fonts/TT-Ramillas/TT Ramillas Trial Medium.ttf
+          weight: 500
+        - asset: assets/fonts/TT-Ramillas/TT Ramillas Trial Bold.ttf
+          weight: 700
 
   #   - family: Trajan Pro
   #     fonts:

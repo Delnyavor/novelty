@@ -68,7 +68,7 @@ class PopularBooksList extends StatelessWidget {
         PopularBooksWidget(
             image:
                 "https://images.ctfassets.net/usf1vwtuqyxm/2DCs73x6P8seNobQ9zBSbO/1a5dfd6ed5fc0ed9545370470fc3d74c/English_Harry_Potter_1_Epub_9781781100219.jpg",
-            title: "Harry Potter And THe Philosophers Stone"),
+            title: "Harry Potter And The Philosophers Stone"),
         PopularBooksWidget(
             image:
                 "https://template.canva.com/EAD7WuSVrt0/1/0/1003w-LVthABb24ik.jpg",

@@ -18,8 +18,9 @@ class _PopularBooksWidgetState extends State<PopularBooksWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(AppRoutes.viewBookDetails,
-            arguments: {"name": widget.title});
+        primaryNavigatorKey.currentState!.pushNamed(AppRoutes.viewBookDetails,
+            // should be isbn
+            arguments: {"name": widget.title, "image": widget.image});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

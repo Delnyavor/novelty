@@ -22,7 +22,6 @@ class _AppPage extends State<AppPage> {
     AppRoutes.libraryRoutePrefix,
     AppRoutes.searchRoutePrefix,
     AppRoutes.communityRoutePrefix,
-    AppRoutes.viewBookDetails,
   ];
 
   bool shouldPop = false;
@@ -40,6 +39,7 @@ class _AppPage extends State<AppPage> {
 
   void activateTimer() {
     timer = Timer(const Duration(seconds: 2), () {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       setState(() {
         shouldPop = false;
       });
